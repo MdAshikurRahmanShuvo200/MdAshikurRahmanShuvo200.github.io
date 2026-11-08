@@ -519,7 +519,7 @@ footer .fo a{color:#8db4ff;text-decoration:none;font-weight:600}footer .fo a:hov
 <div><b id="sc">2</b><span>Certificates</span></div>
 <div><b>Nov 2026</b><span>Last updated</span></div>
 </div>
-<p class="stat-note" id="vnote">Anonymous counter. One visit per browser per day, no personal data stored.</p>
+<p class="stat-note" id="vnote"></p>
 </div>
 </div></section>
 <dialog id="lb" aria-label="Preview"><button type="button" id="lbx" aria-label="Close">&times;</button><button type="button" id="lbp" aria-label="Previous">&#8249;</button><button type="button" id="lbn" aria-label="Next">&#8250;</button><img id="lbi" alt="Preview"><video id="lbv" controls playsinline preload="none"></video><p id="lbc"></p></dialog>
@@ -652,11 +652,11 @@ var t0=null,dur=800;
 function tick(t){if(t0===null)t0=t;var p=Math.min((t-t0)/dur,1);el.textContent=Math.round(n*(1-Math.pow(1-p,3))).toLocaleString();if(p<1)requestAnimationFrame(tick)}
 requestAnimationFrame(tick)}
 var opts={cache:'no-store'};if(TOKEN)opts.headers={Authorization:'Bearer '+TOKEN};
-(function get(path,retry){return fetch(API+path,opts).then(function(r){if(r.status===404&&!path&&retry)return get('up',false);if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})})(countIt?'up':'',true)
+(function get(path,retry,tries){return fetch(API+path,opts).then(function(r){if(r.status===404&&!path&&retry)return get('up',false,tries);if(!r.ok)throw new Error('HTTP '+r.status);return r.json()},function(err){if(tries>0)return new Promise(function(res){setTimeout(res,1500)}).then(function(){return get(path,retry,tries-1)});throw err})})(countIt?'up':'',true,2)
 .then(function(d){var x=(d&&d.data!=null)?d.data:d,n=null;if(x){if(typeof x.count==='number')n=x.count;else if(typeof x.value==='number')n=x.value;else if(typeof x.up_count==='number')n=x.up_count-(x.down_count||0)}if(typeof n!=='number')throw new Error('format');
-if(countIt)store('pf_day',day);live.hidden=false;show(n);
+if(countIt)store('pf_day',day);store('pf_last',String(n));live.hidden=false;show(n);
 if(owner)note.textContent='Owner mode: your visits are not counted on this browser.'})
-.catch(function(e){console.error('visit counter:',e);el.textContent='\u2014';note.textContent='The visit counter is unavailable right now ('+((e&&e.message)||'error')+').'});
+.catch(function(e){console.error('visit counter:',e);var c=store('pf_last');if(c&&!isNaN(+c))show(+c);else el.textContent='\u2014'});
 })();
 
 (function(){
