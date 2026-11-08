@@ -437,7 +437,7 @@ footer .fo a{color:#8db4ff;text-decoration:none;font-weight:600}footer .fo a:hov
 <div class="main ab">
 <p class="lead">I’m a <mark>Computer Science &amp; Engineering graduate</mark> who turns raw ERP data into clear financial reports that businesses can act on.</p>
 <p>I specialise in ERP application development and financial reporting with VB.NET, MS SQL Server, Crystal Reports and Sage 300. I also work with Odoo (QWeb, PostgreSQL), data cleaning, data modeling, and Power BI and Excel dashboards.</p>
-<div class="live"><span class="pulse"></span><div><small>Currently building</small><b>LedgerHub: Sage 300 financial reporting suite</b><span>One VB.NET application that brings four reports together, so finance users open a single window and choose the report they need. A live production project at EZYTEK on Sage 300, MS SQL Server and Crystal Reports.</span><div class="lm"><a href="#p-Vendor-Ledger-Report" style="--c:#3b82f6;--c2:#06b6d4">Vendor Ledger<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m0 0l-5-5m5 5l5-5"/></svg></a><a href="#p-ar-customer-ledger-report" style="--c:#10b981;--c2:#14b8a6">Customer Ledger<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m0 0l-5-5m5 5l5-5"/></svg></a><a href="#p-General-Ledger-Report" style="--c:#8b5cf6;--c2:#6366f1">General Ledger<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m0 0l-5-5m5 5l5-5"/></svg></a><a href="#p-Posting-Journal-Entries" style="--c:#f59e0b;--c2:#ef4444">Posted Journal Entries<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m0 0l-5-5m5 5l5-5"/></svg></a></div></div></div>
+<div class="live"><span class="pulse"></span><div><small>Currently building</small><b>LedgerHub: Sage 300 financial reporting suite</b><span>One VB.NET application that brings four reports together, so finance users open a single window and choose the report they need. A live production project at EZYTEK on Sage 300, MS SQL Server and Crystal Reports.</span><div class="lm"><a href="#p-Vendor-Ledger-Report" style="--c:#3b82f6;--c2:#06b6d4">Vendor Ledger<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m0 0l-5-5m5 5l5-5"/></svg></a><a href="#p-AR-Customer-Ledger-Report" style="--c:#10b981;--c2:#14b8a6">Customer Ledger<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m0 0l-5-5m5 5l5-5"/></svg></a><a href="#p-General-Ledger-Report" style="--c:#8b5cf6;--c2:#6366f1">General Ledger<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m0 0l-5-5m5 5l5-5"/></svg></a><a href="#p-Posting-Journal-Entries" style="--c:#f59e0b;--c2:#ef4444">Posted Journal Entries<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m0 0l-5-5m5 5l5-5"/></svg></a></div></div></div>
 <div class="astats">
 <div><b>3.33<em>/4.00</em></b><span>BSc CGPA, DIU 2025</span></div>
 <div><b>5.00<em>/5.00</em></b><span>GPA in both SSC and HSC</span></div>
@@ -555,7 +555,7 @@ var projects=[
 ["Sage 300","#1e5bd8","Posting Journal Entries Report","SQL Server view on the General Ledger tables, a Crystal Report, and a VB.NET app with user-selectable parameters to run it.",["SQL Server","Crystal Reports","VB.NET"],"Posting-Journal-Entries"],
 ["Sage 300","#1e5bd8","General Ledger Report","General Ledger batch listing report built on Sage 300 data.",["Sage 300","SQL Server","Crystal Reports","VB.NET"],"General-Ledger-Report"],
 ["Sage 300","#1e5bd8","AP Vendor Ledger Report","Accounts Payable vendor ledger and statement report.",["Sage 300","SQL Server","Crystal Reports","VB.NET"],"Vendor-Ledger-Report",1],
-["Sage 300","#1e5bd8","AR Customer Ledger Report","Accounts Receivable customer ledger and statement report on Sage 300 data, built with a SQL Server view, a Crystal Report and a VB.NET app with user-selectable parameters.",["Sage 300","SQL Server","Crystal Reports","VB.NET"],"ar-customer-ledger-report"],
+["Sage 300","#1e5bd8","AR Customer Ledger Report","Accounts Receivable customer ledger and statement report on Sage 300 data, built with a SQL Server view, a Crystal Report and a VB.NET app with user-selectable parameters.",["Sage 300","SQL Server","Crystal Reports","VB.NET"],"AR-Customer-Ledger-Report"],
 ["Excel","#16a34a","Coffee Shop Sales Dashboard","Interactive dashboard tracking revenue ($2,565.50), profit ($1,256.65), units sold and transactions, with city and month slicers.",["Excel","Pivot tables","Slicers"],"Coffee-Shop-Dashbaord",1],
 ["Excel","#16a34a","HR and Sales Analysis Dashboards","Two dashboards for HR and sales data using pivot tables, dynamic charts and slicers.",["Excel","Dashboards"],"HR-Sales-Analysis-Dashboard",1]];
 function chips(a){return a.map(function(t){return '<span class="chip">'+t+'</span>'}).join('')}
@@ -637,7 +637,7 @@ if(b){var im=document.getElementById(b.getAttribute('data-full'));if(im){stop();
 if(t===lb||t.id==='lbx'||t===li)lb.close()})})();
 
 (function(){
-var NS='ashikur-rahman-shuvo-portfolio',KEY='visits',API='https://api.counterapi.dev/v1/'+NS+'/'+KEY+'/';
+var WS='ashikur-rahman-shuvo-portfolio',KEY='visits',TOKEN='',API='https://api.counterapi.dev/v2/'+WS+'/'+KEY+'/';
 var el=document.getElementById('vcount'),note=document.getElementById('vnote'),live=document.getElementById('vlive');
 var sp=document.getElementById('sp'),sc=document.getElementById('sc');
 if(sp&&typeof projects!=='undefined')sp.textContent=projects.length;
@@ -651,9 +651,10 @@ if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){el
 var t0=null,dur=800;
 function tick(t){if(t0===null)t0=t;var p=Math.min((t-t0)/dur,1);el.textContent=Math.round(n*(1-Math.pow(1-p,3))).toLocaleString();if(p<1)requestAnimationFrame(tick)}
 requestAnimationFrame(tick)}
-fetch(API+(countIt?'up':''),{cache:'no-store'})
+var opts={cache:'no-store'};if(TOKEN)opts.headers={Authorization:'Bearer '+TOKEN};
+fetch(API+(countIt?'up':''),opts)
 .then(function(r){if(!r.ok)throw new Error('http');return r.json()})
-.then(function(d){var n=d&&(d.count!=null?d.count:d.value);if(typeof n!=='number')throw new Error('format');
+.then(function(d){var x=(d&&d.data!=null)?d.data:d,n=null;if(x){if(typeof x.count==='number')n=x.count;else if(typeof x.value==='number')n=x.value;else if(typeof x.up_count==='number')n=x.up_count-(x.down_count||0)}if(typeof n!=='number')throw new Error('format');
 if(countIt)store('pf_day',day);live.hidden=false;show(n);
 if(owner)note.textContent='Owner mode: your visits are not counted on this browser.'})
 .catch(function(){el.textContent='\u2014';note.textContent='The visit counter is unavailable right now.'});
