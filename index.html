@@ -637,7 +637,7 @@ if(b){var im=document.getElementById(b.getAttribute('data-full'));if(im){stop();
 if(t===lb||t.id==='lbx'||t===li)lb.close()})})();
 
 (function(){
-var WS='ashikur-rahman-shuvo-portfolio',KEY='visits',TOKEN='',API='https://api.counterapi.dev/v2/'+WS+'/'+KEY+'/';
+var WS='ashikur-rahman-shuvo-portfolios-workspace',KEY='visits',TOKEN='',API='https://api.counterapi.dev/v2/'+WS+'/'+KEY+'/';
 var el=document.getElementById('vcount'),note=document.getElementById('vnote'),live=document.getElementById('vlive');
 var sp=document.getElementById('sp'),sc=document.getElementById('sc');
 if(sp&&typeof projects!=='undefined')sp.textContent=projects.length;
@@ -653,11 +653,11 @@ function tick(t){if(t0===null)t0=t;var p=Math.min((t-t0)/dur,1);el.textContent=M
 requestAnimationFrame(tick)}
 var opts={cache:'no-store'};if(TOKEN)opts.headers={Authorization:'Bearer '+TOKEN};
 fetch(API+(countIt?'up':''),opts)
-.then(function(r){if(!r.ok)throw new Error('http');return r.json()})
+.then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
 .then(function(d){var x=(d&&d.data!=null)?d.data:d,n=null;if(x){if(typeof x.count==='number')n=x.count;else if(typeof x.value==='number')n=x.value;else if(typeof x.up_count==='number')n=x.up_count-(x.down_count||0)}if(typeof n!=='number')throw new Error('format');
 if(countIt)store('pf_day',day);live.hidden=false;show(n);
 if(owner)note.textContent='Owner mode: your visits are not counted on this browser.'})
-.catch(function(){el.textContent='\u2014';note.textContent='The visit counter is unavailable right now.'});
+.catch(function(e){console.error('visit counter:',e);el.textContent='\u2014';note.textContent='The visit counter is unavailable right now ('+((e&&e.message)||'error')+').'});
 })();
 
 (function(){
